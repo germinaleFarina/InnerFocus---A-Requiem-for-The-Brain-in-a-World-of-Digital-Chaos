@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Inner Focus</title>
+<meta name="description" content="Un blocco per le app. Niente account, niente pubblicità, niente connessione a Internet. / An app blocker. No account, no ads, no internet connection.">
+<meta name="color-scheme" content="dark">
+<style>
+  :root { color-scheme: dark; --fg: #ededed; --mut: #8c8c8c; }
+  * { box-sizing: border-box; }
+  html {
+    background: #000; color: var(--fg);
+    font: 18px/1.65 ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    -webkit-text-size-adjust: 100%;
+  }
+  body { margin: 0 auto; max-width: 52rem; padding: 0 clamp(20px, 6vw, 48px); }
+  a { color: inherit; text-underline-offset: .25em; }
+  a:hover { text-decoration-thickness: 2px; }
+  :focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+  .top { display: flex; justify-content: flex-end; gap: 1rem; padding-top: 20px; font-size: 15px; }
+  .top button {
+    all: unset; cursor: pointer; color: var(--mut); padding: 6px 2px;
+  }
+  .top button[aria-pressed="true"] { color: var(--fg); text-decoration: underline; text-underline-offset: .3em; }
+  .top button:focus-visible { outline: 2px solid #fff; outline-offset: 4px; }
+
+  .hero { padding: clamp(72px, 16vh, 150px) 0 clamp(64px, 12vh, 110px); }
+  h1 {
+    margin: 0 0 .3em; font-weight: 200; letter-spacing: -.04em; line-height: .95;
+    font-size: clamp(3.2rem, 14vw, 8.5rem);
+  }
+  .lead { margin: 0 0 .6em; max-width: 26ch; font-size: clamp(1.3rem, 3.6vw, 1.85rem); font-weight: 300; line-height: 1.35; }
+  .sub { margin: 0 0 2.2rem; color: var(--mut); }
+  .btn {
+    display: inline-block; padding: 16px 28px; background: #fff; color: #000;
+    font-weight: 600; text-decoration: none;
+  }
+  .btn:hover { background: #d4d4d4; }
+  .note { margin: 1rem 0 0; color: var(--mut); font-size: 15px; max-width: 46ch; }
+
+  section { padding: 0 0 clamp(56px, 9vh, 92px); }
+  h2 { margin: 0 0 1rem; font-size: 1.6rem; font-weight: 400; letter-spacing: -.01em; }
+  p { margin: 0 0 1em; max-width: 60ch; }
+  .muted { color: var(--mut); }
+
+  dl { display: grid; grid-template-columns: 1fr; gap: 1.1rem; margin: 1.6rem 0; }
+  dt { font-weight: 600; }
+  dd { margin: .15rem 0 0; color: var(--mut); max-width: 56ch; }
+  @media (min-width: 700px) {
+    dl { grid-template-columns: 13.5rem 1fr; gap: 1.1rem 2rem; }
+    dd { margin: 0; }
+  }
+
+  ol { max-width: 56ch; padding-left: 1.3em; }
+  li { margin: .55em 0; padding-left: .3em; }
+  code { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; font-size: .85em; word-break: break-all; }
+  .hash { display: block; margin: .4rem 0 1rem; color: var(--mut); }
+
+  details { max-width: 56ch; color: var(--mut); font-size: 15px; }
+  summary { cursor: pointer; color: var(--fg); }
+  details ul { padding-left: 1.2em; }
+
+  footer { padding: 0 0 64px; color: var(--mut); font-size: 15px; }
+
+  /* una lingua alla volta */
+  .t[lang="en"] { display: none; }
+  html[data-lang="en"] .t[lang="it"] { display: none; }
+  html[data-lang="en"] .t[lang="en"] { display: block; }
+  html[data-lang="en"] span.t[lang="en"] { display: inline; }
+
+  /* un solo momento di movimento: la comparsa dell'apertura, come lo splash dell'app */
+  @media (prefers-reduced-motion: no-preference) {
+    .in { opacity: 0; animation: in 1.4s ease forwards; }
+    .in.b { animation-delay: .8s; }
+    .in.c { animation-delay: 1.5s; }
+    @keyframes in { to { opacity: 1; } }
+  }
+</style>
+</head>
+<body>
+
+<div class="top" role="group" aria-label="Language / Lingua">
+  <button type="button" data-set="it" aria-pressed="true">Italiano</button>
+  <button type="button" data-set="en" aria-pressed="false">English</button>
+</div>
+
+<header class="hero">
+  <h1 class="in">Inner Focus</h1>
+
+  <div class="in b">
+    <div class="t" lang="it">
+      <p class="lead">Un blocco per le app. Niente account, niente pubblicità, niente connessione a Internet.</p>
+    </div>
+    <div class="t" lang="en">
+      <p class="lead">An app blocker. No account, no ads, no internet connection.</p>
+    </div>
+  </div>
+
+  <div class="in c">
+    <div class="t" lang="it">
+      <p class="sub">Versione 2.0, per Android 8 o successivo.</p>
+      <a class="btn" href="https://github.com/germinaleFarina/InnerFocus---A-Requiem-for-The-Brain-in-a-World-of-Digital-Chaos/releases/latest/download/InnerFocus.apk">Scarica l'APK</a>
+      <p class="note">Non è sul Play Store: si installa da questo file. Sotto trovi come fare.</p>
+    </div>
+    <div class="t" lang="en">
+      <p class="sub">Version 2.0, for Android 8 or later.</p>
+      <a class="btn" href="https://github.com/germinaleFarina/InnerFocus---A-Requiem-for-The-Brain-in-a-World-of-Digital-Chaos/releases/latest/download/InnerFocus.apk">Download the APK</a>
+      <p class="note">It is not on the Play Store: you install it from this file. How to, below.</p>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<section>
+  <div class="t" lang="it">
+    <h2>Cosa fa</h2>
+    <p>Scegli le app da bloccare e come. Il blocco dura il tempo che decidi, in ore o giorni, oppure si ripete ogni giorno fino a mezzanotte.</p>
+    <dl>
+      <dt>Totale</dt><dd>L'app è sempre bloccata.</dd>
+      <dt>Tempo limite</dt><dd>La usi fino a un limite giornaliero, poi si blocca fino a mezzanotte.</dd>
+      <dt>Fasce orarie</dt><dd>La usi solo in certe ore, oppure mai in certe ore.</dd>
+      <dt>Aperture compulsive</dt><dd>Dopo aver chiuso un'app aspetti prima di riaprirla: quindici minuti, un'ora, quanto vuoi. Ogni apertura diventa una scelta.</dd>
+      <dt>Uso continuativo</dt><dd>Un tetto a quanto puoi restare di fila su un'app, poi una pausa forzata.</dd>
+      <dt>Combinato</dt><dd>Unisci le regole. Per esempio: 30 minuti al giorno, mai al mattino e alla sera, una sola apertura ogni ora.</dd>
+    </dl>
+    <p>Le regole valgono per tutte le app insieme oppure una per una: WhatsApp non al mattino, un'altra app solo la sera. Puoi anche indicare le app che Inner Focus non potrà mai bloccare né controllare.</p>
+    <p>Per togliere il blocco prima della scadenza serve una password casuale di 20 caratteri. Viene generata all'attivazione e nessuno la vede mai, nemmeno tu.</p>
+    <p class="muted">Disponibile in italiano, inglese, francese, spagnolo, tedesco e portoghese.</p>
+  </div>
+  <div class="t" lang="en">
+    <h2>What it does</h2>
+    <p>You choose which apps to block and how. The block lasts as long as you decide, in hours or days, or it repeats every day until midnight.</p>
+    <dl>
+      <dt>Total</dt><dd>The app is always blocked.</dd>
+      <dt>Time limit</dt><dd>You use it up to a daily limit, then it is blocked until midnight.</dd>
+      <dt>Time windows</dt><dd>You use it only at certain hours, or never at certain hours.</dd>
+      <dt>Compulsive openings</dt><dd>After closing an app you wait before opening it again: fifteen minutes, an hour, as long as you want. Every opening becomes a choice.</dd>
+      <dt>Continuous use</dt><dd>A cap on how long you can stay on an app in a row, then a forced pause.</dd>
+      <dt>Combined</dt><dd>Mix the rules. For example: 30 minutes a day, never in the morning or evening, one opening per hour.</dd>
+    </dl>
+    <p>Rules can apply to all apps together or one by one: no WhatsApp in the morning, another app only in the evening. You can also list apps that Inner Focus can never block or control.</p>
+    <p>To lift a block early you need a random 20-character password. It is generated when you start the block and nobody ever sees it, not even you.</p>
+    <p class="muted">Available in Italian, English, French, Spanish, German and Portuguese.</p>
+  </div>
+</section>
+
+<section>
+  <div class="t" lang="it">
+    <h2>Privacy</h2>
+    <p>Inner Focus non ha nemmeno il permesso Internet. Non può inviare nulla a nessuno e funziona in modalità aereo. Non raccoglie dati, non ha account, pubblicità o statistiche. Sul telefono restano solo le tue impostazioni, e spariscono se disinstalli l'app.</p>
+    <p>Per bloccare le app sa soltanto quale app è aperta in quel momento: il nome, non il contenuto. Non legge lo schermo, i messaggi o le password.</p>
+    <p>Puoi controllarlo da solo: Impostazioni, App, Inner Focus, Autorizzazioni. La voce «Internet» non c'è. Oppure attiva la modalità aereo e prova.</p>
+    <dl>
+      <dt>Accesso ai dati di utilizzo</dt><dd>Per vedere quale app è aperta.</dd>
+      <dt>Mostra sopra altre app</dt><dd>Per riportarti alla schermata di blocco. Non legge lo schermo.</dd>
+      <dt>Notifiche e avvio</dt><dd>Per tenere attivo il blocco e riattivarlo dopo un riavvio.</dd>
+    </dl>
+    <p>Il blocco dei siti web è facoltativo e spento di default. Se lo accendi, l'app usa un servizio di accessibilità che legge soltanto la barra degli indirizzi dei browser e si spegne da solo a fine blocco. Android non permette di limitare questo permesso a singole app: è il codice a limitarsi. Prima di attivarlo, l'app ti spiega tutto. Se non lo accendi, Inner Focus non ha alcun servizio di accessibilità.</p>
+  </div>
+  <div class="t" lang="en">
+    <h2>Privacy</h2>
+    <p>Inner Focus does not even have the Internet permission. It cannot send anything to anyone and it works in airplane mode. It collects no data and has no accounts, ads or analytics. Only your own settings stay on the phone, and they disappear if you uninstall the app.</p>
+    <p>To block apps it only knows which app is open at that moment: the name, not the content. It does not read your screen, messages or passwords.</p>
+    <p>You can check for yourself: Settings, Apps, Inner Focus, Permissions. There is no “Internet”. Or turn on airplane mode and try.</p>
+    <dl>
+      <dt>Usage access</dt><dd>To see which app is open.</dd>
+      <dt>Display over other apps</dt><dd>To bring you back to the block screen. It does not read the screen.</dd>
+      <dt>Notifications and startup</dt><dd>To keep the block running and restart it after a reboot.</dd>
+    </dl>
+    <p>Website blocking is optional and off by default. If you turn it on, the app uses an accessibility service that reads only the address bar of browsers and switches itself off when the block ends. Android does not let this permission be restricted to specific apps: it is the code that limits itself. Before you enable it, the app explains everything. If you never turn it on, Inner Focus has no accessibility service at all.</p>
+  </div>
+</section>
+
+<section>
+  <div class="t" lang="it">
+    <h2>Cosa non fa</h2>
+    <p>Non è un lucchetto, è attrito. Disinstallare l'app, cancellarne i dati, togliere i permessi o riavviare in modalità provvisoria elimina il blocco. È pensata per fermarti nei momenti d'impulso, non per toglierti la scelta.</p>
+  </div>
+  <div class="t" lang="en">
+    <h2>What it does not do</h2>
+    <p>It is not a lock, it is friction. Uninstalling the app, clearing its data, revoking its permissions or rebooting into safe mode removes the block. It is made to stop you in moments of impulse, not to take the choice away from you.</p>
+  </div>
+</section>
+
+<section>
+  <div class="t" lang="it">
+    <h2>Come si installa</h2>
+    <ol>
+      <li>Scarica il file APK dal pulsante in alto.</li>
+      <li>Aprilo. Android ti chiede di consentire l'installazione da questa fonte: accetta.</li>
+      <li>Se compare un avviso di Play Protect, è perché l'app non viene dal Play Store. Puoi scegliere «Installa comunque».</li>
+      <li>Apri Inner Focus e concedi i permessi che ti chiede.</li>
+    </ol>
+    <p>Per controllare che il file sia quello originale, confronta la sua impronta SHA-256:</p>
+    <code class="hash">incolla-qui-lo-sha256</code>
+    <p class="muted">Su Windows: <code>certutil -hashfile InnerFocus.apk SHA256</code>. Su Mac o Linux: <code>shasum -a 256 InnerFocus.apk</code>.</p>
+  </div>
+  <div class="t" lang="en">
+    <h2>How to install</h2>
+    <ol>
+      <li>Download the APK file with the button at the top.</li>
+      <li>Open it. Android asks you to allow installs from this source: accept.</li>
+      <li>If Play Protect shows a warning, it is because the app does not come from the Play Store. You can choose “Install anyway”.</li>
+      <li>Open Inner Focus and grant the permissions it asks for.</li>
+    </ol>
+    <p>To check that the file is the original, compare its SHA-256 fingerprint:</p>
+    <code class="hash">paste-the-sha256-here</code>
+    <p class="muted">On Windows: <code>certutil -hashfile InnerFocus.apk SHA256</code>. On Mac or Linux: <code>shasum -a 256 InnerFocus.apk</code>.</p>
+  </div>
+</section>
+
+</main>
+
+<footer>
+  <p>Developed by Germinale Shinoda, Powered by You.</p>
+  <details>
+    <summary><span class="t" lang="it">Licenze di terze parti</span><span class="t" lang="en">Third-party licenses</span></summary>
+    <div class="t" lang="it">
+      <p>Inner Focus usa queste librerie, tutte con licenza Apache 2.0:</p>
+    </div>
+    <div class="t" lang="en">
+      <p>Inner Focus uses these libraries, all under the Apache 2.0 license:</p>
+    </div>
+    <ul>
+      <li>Jetpack Compose, Material 3 and AndroidX Activity, The Android Open Source Project</li>
+      <li>Kotlin and kotlinx.coroutines, JetBrains s.r.o. and contributors</li>
+    </ul>
+    <p><a href="https://www.apache.org/licenses/LICENSE-2.0">apache.org/licenses/LICENSE-2.0</a></p>
+  </details>
+</footer>
+
+<script>
+  (function () {
+    var root = document.documentElement;
+    var buttons = document.querySelectorAll('.top button');
+    function setLang(l) {
+      root.setAttribute('data-lang', l);
+      root.lang = l;
+      document.title = l === 'en' ? 'Inner Focus: app blocker, no data' : 'Inner Focus: blocco app, nessun dato';
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].setAttribute('aria-pressed', buttons[i].getAttribute('data-set') === l ? 'true' : 'false');
+      }
+    }
+    for (var i = 0; i < buttons.length; i++) {
+      buttons[i].addEventListener('click', function () { setLang(this.getAttribute('data-set')); });
+    }
+    var nav = (navigator.language || 'it').toLowerCase();
+    setLang(nav.indexOf('it') === 0 ? 'it' : 'en');
+  })();
+</script>
+</body>
+</html>
